@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NagarSewa — Safer Streets. Stronger Communities.</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&family=Young+Serif&display=swap">
+<style>
+:root{--iv:#F5F0DC;--ink:#1A1917;--red:#E0241A;--white:#fff;--warm:#E7E1D2;--mute:#716E66;--bd:#D8D1C1;--ok:#27734A;--warn:#C88718;--err:#B42318;--surf:#FBF8EC;--ease:cubic-bezier(.2,.7,.2,1);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){color-scheme:dark;--iv:#F5F0DC;--surf:#FBF8EC}}
+*{box-sizing:border-box;margin:0}html{height:100%;scroll-padding-top:80px}
+body{background:var(--iv);color:var(--ink);font:400 16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.w{max-width:1200px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:'Young Serif',Georgia,serif;letter-spacing:-.01em;line-height:1.08;font-weight:400}
+h1{font-size:clamp(44px,7.4vw,96px)}h2{font-size:clamp(30px,4.4vw,52px)}h3{font-size:21px;letter-spacing:0;line-height:1.25}
+.mute{color:var(--mute)}.mono{font:500 13px 'JetBrains Mono',monospace}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:48px;padding:0 24px;border:1px solid var(--ink);background:transparent;font-weight:600;font-size:15px;position:relative;overflow:hidden;isolation:isolate;transition:color .35s var(--ease),transform .2s}
+.btn::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform .35s var(--ease);z-index:-1}
+.btn:hover::before{transform:none}.btn:hover{color:var(--iv)}.btn:active{transform:scale(.98)}
+.btn.p{background:var(--red);border-color:var(--red);color:#fff}.btn.p::before{background:var(--ink)}.btn.p:hover{border-color:var(--ink);color:#fff}
+.btn.sm{height:38px;padding:0 16px;font-size:14px}.btn[disabled]{opacity:.45;pointer-events:none}
+.btn .sp{width:16px;height:16px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:rot .7s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+/* nav */
+nav.top{position:sticky;top:0;z-index:50;background:rgba(245,240,220,.94);border-bottom:1px solid var(--bd)}
+nav.top .w{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font:400 26px 'Young Serif',Georgia,serif;letter-spacing:-.01em}.logo b{color:var(--red)}
+.links{display:flex;gap:32px;font-size:14.5px;font-weight:500}
+.links a{position:relative;padding:6px 0}.links a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.links a:hover::after,.links a.on::after{transform:scaleX(1)}
+.nr{display:flex;gap:12px;align-items:center}.burger{display:none;background:none;border:0;padding:8px}
+/* hero */
+.hero{padding:56px 0 72px}.hg{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+.hero h1 .r{color:var(--red)}
+.hero p.lead{font-size:19px;max-width:480px;margin:28px 0 36px;color:#3b3935}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.shot{position:relative;aspect-ratio:4/5;background:var(--ink);overflow:hidden;border:1px solid var(--ink)}
+.shot svg.sc{width:100%;height:100%;display:block;transform:scale(1.06);animation:drift 14s ease-in-out infinite alternate}
+@keyframes drift{to{transform:scale(1.14) translate(-1.5%,1%)}}
+.tag{position:absolute;left:16px;bottom:16px;right:16px;background:var(--iv);padding:14px 16px;display:grid;grid-template-columns:auto 1fr;gap:4px 16px;font-size:13px;border-left:4px solid var(--red)}
+.tag dt{color:var(--mute)}.tag dd{font-weight:600;margin:0}
+.demo{font-size:12px;color:var(--mute);margin-top:10px}
+.pin{position:absolute;left:46%;top:56%;width:22px;height:22px;border-radius:50%;background:var(--red);border:3px solid var(--iv)}
+.pin::after{content:"";position:absolute;inset:-10px;border:2px solid var(--red);border-radius:50%;animation:pulse 2.2s ease-out infinite}
+@keyframes pulse{from{transform:scale(.6);opacity:1}to{transform:scale(1.8);opacity:0}}
+/* sections */
+section.s{padding:96px 0}.dark{background:var(--ink);color:var(--iv)}.dark .mute{color:#A9A598}
+.strip{border-block:1px solid var(--bd);background:var(--surf)}.strip .w{display:grid;grid-template-columns:repeat(4,1fr)}
+.strip div.m{padding:28px 24px;border-left:1px solid var(--bd)}.strip div.m:first-child{border-left:0;padding-left:0}
+.strip b{display:block;font:400 40px/1.1 'Young Serif',Georgia,serif}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);margin-top:56px;border-top:1px solid #3a3835}
+.step{padding:28px 24px 8px 0;position:relative;transition:transform .4s var(--ease)}
+.step::before{content:"";position:absolute;top:-1px;left:0;height:2px;width:0;background:var(--red);transition:width .5s var(--ease)}
+.step:hover::before{width:100%}.step:hover{transform:translateY(-6px)}
+.step .n{color:var(--red);font:600 14px 'JetBrains Mono',monospace}.step h3{margin:14px 0 8px}
+.cats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:48px;border:1px solid var(--bd)}
+.cat{padding:32px;border:1px solid var(--bd);margin:-1px 0 0 -1px;display:flex;gap:18px;align-items:flex-start;background:transparent;text-align:left;transition:background .3s,color .3s}
+.cat:hover{color:var(--iv)}.cat:hover svg{color:var(--red);transform:translateX(4px)}.cat svg{width:28px;height:28px;transition:transform .35s var(--ease),color .3s}
+.tl{list-style:none;padding:0;position:relative;margin-top:8px}
+.tl li{display:grid;grid-template-columns:28px 1fr;gap:16px;padding-bottom:26px;position:relative}
+.tl li::before{content:"";position:absolute;left:6px;top:20px;bottom:0;width:2px;background:var(--bd)}.tl li:last-child::before{display:none}
+.tl .d{width:14px;height:14px;border-radius:50%;border:2px solid var(--mute);background:var(--iv);margin-top:5px}
+.tl li.done .d{background:var(--ink);border-color:var(--ink)}.tl li.now .d{background:var(--red);border-color:var(--red)}
+.dark .tl .d{background:var(--ink)}.dark .tl li.done .d{background:var(--iv);border-color:var(--iv)}.dark .tl li::before{background:#3a3835}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.cta{text-align:left;padding:112px 0}.cta h2{font-size:clamp(36px,6vw,76px);max-width:900px;margin-bottom:36px}
+footer{background:var(--ink);color:var(--iv);padding:64px 0 32px;border-top:3px solid var(--red)}
+footer .fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}footer h4{font-size:13px;color:#A9A598;font-weight:600;margin-bottom:14px}
+footer a{display:block;padding:4px 0;font-size:14.5px;transition:color .2s,padding .3s var(--ease)}footer a:hover{color:var(--red);padding-left:6px}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease),transform .6s var(--ease)}.rv.in{opacity:1;transform:none}
+/* forms */
+.card{background:var(--surf);border:1px solid var(--bd);padding:28px}
+.bar{display:flex;gap:6px;margin:8px 0 32px}.bar i{flex:1;height:4px;background:var(--bd);transition:background .4s}.bar i.on{background:var(--red)}
+label.l{display:block;font-weight:600;font-size:14px;margin:18px 0 6px}
+input,select,textarea{width:100%;font:inherit;padding:12px 14px;background:#fff;border:1px solid var(--bd);color:var(--ink);transition:border-color .2s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px rgba(240,39,31,.25)}
+.drop{border:1.5px dashed var(--mute);padding:56px 24px;text-align:center;cursor:pointer;transition:background .25s,border-color .25s}
+.drop:hover,.drop.ov{background:var(--warm);border-color:var(--red)}
+.err{color:var(--err);font-size:13.5px;margin-top:8px;min-height:20px}
+.prev{position:relative}.prev img{width:100%;max-height:340px;object-fit:cover;display:block}
+.stk{position:sticky;bottom:0;background:var(--iv);padding:14px 0;border-top:1px solid var(--bd);display:flex;gap:12px;margin-top:28px}
+.stk .btn{flex:1}
+.map{position:relative;background:#EDE7D0;border:1px solid var(--bd);overflow:hidden;touch-action:none}.map svg{display:block;width:100%;height:auto}
+.mk{cursor:pointer;transition:transform .25s var(--ease);transform-box:fill-box;transform-origin:center}.mk:hover,.mk.sel{transform:scale(1.5)}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;padding:3px 10px;border:1px solid currentColor;white-space:nowrap}
+.badge::before{content:"";width:7px;height:7px;background:currentColor}
+.b-High{color:var(--red)}.b-High::before{border-radius:0}.b-Medium{color:var(--warn)}.b-Medium::before{transform:rotate(45deg)}.b-Low{color:var(--ok)}.b-Low::before{border-radius:50%}
+.s-Verified{color:var(--ok)}.s-Reopened{color:var(--err)}.s-Submitted,.s-Review{color:var(--mute)}.s-Assigned,.s-Verification{color:var(--ink)}
+/* admin */
+.adm{display:grid;grid-template-columns:240px 1fr;min-height:calc(100vh - 68px)}
+.side{background:var(--ink);color:var(--iv);padding:24px 12px;position:sticky;top:68px;align-self:start;height:calc(100vh - 68px)}
+.side button{display:flex;gap:12px;align-items:center;width:100%;padding:11px 14px;border:0;background:none;text-align:left;font-size:14.5px;border-left:3px solid transparent;transition:background .25s,padding .3s var(--ease)}
+.side button:hover{background:#2a2825;padding-left:20px}.side button.on{background:var(--red);color:#fff;font-weight:600}
+.main{padding:32px;min-width:0}.kp{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--bd);margin:24px 0}
+.kp div{padding:20px;border-left:1px solid var(--bd)}.kp div:first-child{border:0}.kp b{display:block;font:400 36px/1.2 'Young Serif',Georgia,serif}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.tools input,.tools select{width:auto;flex:1;min-width:130px}
+.tw{overflow-x:auto;border:1px solid var(--bd)}table{border-collapse:collapse;width:100%;font-size:14px;min-width:760px}
+th{text-align:left;padding:12px 14px;background:var(--warm);font-weight:600;cursor:pointer;white-space:nowrap;user-select:none}th:hover{color:var(--red)}
+td{padding:13px 14px;border-top:1px solid var(--bd);background:var(--surf)}tr.r{cursor:pointer;transition:background .2s}tr.r:hover td{background:#fff;box-shadow:inset 3px 0 0 var(--red)}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px}.ba figure{margin:0;position:relative}.ba figcaption{position:absolute;left:0;top:0;background:var(--ink);color:var(--iv);font-size:12px;font-weight:600;padding:3px 10px}
+.tst{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);background:var(--ink);color:var(--iv);padding:14px 22px;border-left:4px solid var(--red);opacity:0;transition:.35s var(--ease);z-index:99;pointer-events:none;max-width:90vw}
+.tst.on{opacity:1;transform:translate(-50%,0)}
+.ph{background:repeating-linear-gradient(135deg,#3a3835 0 10px,#2e2c29 10px 20px);aspect-ratio:4/3;display:grid;place-items:center;color:#A9A598;font-size:13px}
+.ph.g{background:repeating-linear-gradient(135deg,#8c8774 0 10px,#7f7a68 10px 20px);color:#f3efe0}
+.pg{animation:pg .35s var(--ease)}@keyframes pg{from{opacity:0;transform:translateY(12px)}}
+#prog{position:fixed;top:0;left:0;height:3px;width:100%;background:var(--red);transform-origin:left;transform:scaleX(0);z-index:100}
+.curt{position:fixed;inset:0;background:var(--ink);z-index:90;transform:translateY(101%);pointer-events:none;display:grid;place-items:center;color:var(--iv);font:400 clamp(32px,6vw,64px) 'Young Serif',Georgia,serif}.curt b{color:var(--red)}.curt.go{animation:cur .5s cubic-bezier(.65,0,.35,1)}
+@keyframes cur{0%{transform:translateY(101%)}42%,58%{transform:none}100%{transform:translateY(-101%)}}
+.hero h1 .ln{display:block;overflow:hidden;padding-bottom:.1em}.hero h1 .ln>i{display:block;font-style:normal;transform:translateY(110%);animation:up .7s .1s var(--ease) forwards}@keyframes up{to{transform:none}}
+.hero .lead,.hero .row{opacity:0;animation:fi .6s .45s var(--ease) forwards}.hero .row{animation-delay:.55s}@keyframes fi{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.shot{clip-path:inset(0 0 100% 0);animation:cl .9s .15s var(--ease) forwards}@keyframes cl{to{clip-path:inset(0)}}.shot svg.sc{transition:transform .35s ease-out}
+.mq{background:var(--ink);color:var(--iv);overflow:hidden;white-space:nowrap;border-top:3px solid var(--red)}.mq>div{display:inline-flex;gap:36px;padding:16px 0;animation:mq 34s linear infinite;font-weight:600;font-size:15px}.mq:hover>div{animation-play-state:paused}@keyframes mq{to{transform:translateX(-50%)}}
+.btn svg{transition:transform .35s var(--ease)}.btn:hover svg{transform:translateX(5px)}
+.strip div.m{transition:background .35s}.strip div.m:hover{background:var(--warm)}.strip b{transition:color .3s}.strip div.m:hover b{color:var(--red)}
+h2.rv::after{content:"";display:block;height:4px;width:0;background:var(--red);margin-top:20px;transition:width 1s .3s var(--ease)}h2.rv.in::after{width:72px}
+.step.in::before{width:100%;transition-duration:1.3s;transition-delay:.3s}.step .n{display:inline-block;transition:transform .4s var(--ease)}.step:hover .n{transform:translateX(10px)}
+.cat{position:relative;overflow:hidden;isolation:isolate}.cat::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateX(-101%);transition:transform .5s var(--ease);z-index:-1}.cat:hover::before{transform:none}.cat::after{content:"\2192";position:absolute;right:24px;top:28px;opacity:0;transform:translateX(-14px);transition:.45s var(--ease);color:var(--red);font-weight:700}.cat:hover::after{opacity:1;transform:none}
+.tl li{opacity:0;transform:translateX(-18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}.tl.in li{opacity:1;transform:none}.tl li::before{transform-origin:top;transform:scaleY(0);transition:transform .6s var(--ease);transition-delay:inherit}.tl.in li::before{transform:scaleY(1)}
+.tl li.now .d{animation:dp 1.8s ease-out infinite}@keyframes dp{from{box-shadow:0 0 0 0 rgba(240,39,31,.5)}to{box-shadow:0 0 0 12px rgba(240,39,31,0)}}
+.tabs{position:relative;display:flex;gap:6px;margin:36px 0 32px;border-bottom:1px solid var(--bd);overflow-x:auto}.tabs button{background:none;border:0;padding:14px 22px;font-weight:600;color:var(--mute);transition:color .3s;white-space:nowrap}.tabs button.on,.tabs button:hover{color:var(--ink)}.tabs .ink{position:absolute;bottom:-1px;height:3px;background:var(--red);transition:left .5s var(--ease),width .5s var(--ease)}.tpn>div{animation:pg .5s var(--ease)}
+.card{transition:border-color .3s,transform .4s var(--ease)}.card:hover{border-color:var(--ink)}
+.kp div{transition:background .3s,color .3s}.kp div:hover{background:var(--ink);color:var(--iv)}
+.mk.hi:not(:hover):not(.sel){animation:bk 2s ease-in-out infinite}@keyframes bk{50%{transform:scale(1.3)}}@keyframes gw{from{width:0}}
+.adm .btn.p{background:var(--ink);border-color:var(--ink)}.adm .btn.p::before{background:var(--red)}.adm .btn.p:hover{border-color:var(--red)}.side button.on{background:#2a2825;box-shadow:inset 3px 0 0 var(--red);color:#fff}
+.tg{appearance:none;-webkit-appearance:none;width:44px;height:24px;padding:0;border:1px solid var(--ink);background:var(--warm);position:relative;cursor:pointer;transition:background .3s,border-color .3s;flex:none}.tg::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;background:var(--ink);transition:transform .3s var(--ease),background .3s}.tg:checked{background:var(--red);border-color:var(--red)}.tg:checked::after{transform:translateX(20px);background:#fff}
+@media(max-width:900px){.links,.nr .hide{display:none}.burger{display:block}.links.open{display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:var(--iv);padding:20px 24px;border-bottom:1px solid var(--bd);gap:14px}
+.hg,.two,footer .fg{grid-template-columns:1fr}.strip .w,.kp{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr 1fr}.cats{grid-template-columns:1fr}.shot{aspect-ratio:4/3}
+.adm{grid-template-columns:1fr}.side{position:static;height:auto;display:flex;overflow-x:auto;padding:8px}.side button{width:auto;white-space:nowrap}.main{padding:20px 16px}section.s{padding:64px 0}.ba{grid-template-columns:1fr}.strip div.m:nth-child(3){border-left:0;padding-left:0}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:.01ms!important}.rv{opacity:1;transform:none}.hero .lead,.hero .row{opacity:1}.hero h1 .ln>i{transform:none}.shot{clip-path:none}.tl li{opacity:1;transform:none}.tl li::before{transform:none}}
+.leaflet-container{font:inherit;background:#EDE7D0}#mapw{height:520px;border:1px solid var(--bd)}.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .35s ease-out}.ph{position:relative;overflow:hidden}.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}@media(max-width:900px){#mapw{height:380px}}</style><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script></head><body>
+<nav class="top"><div class="w"><a href="#home" class="logo" aria-label="NagarSewa home">Nagar<b>Sewa</b></a>
+<div class="links" id="lk"><a href="#home" data-r="home">Home</a><a href="#home-how" data-r="how">How It Works</a><a href="#map" data-r="map">Explore Issues</a><a href="#admin" data-r="admin">Admin Demo</a></div>
+<div class="nr"><a href="#track" class="hide" style="font-size:14.5px;font-weight:500">Track a report</a><a href="#report" class="btn p sm">Report a Hazard</a><button class="burger" id="bg" aria-label="Menu"><svg class="i" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div></div></nav>
+<main id="app"></main><div class="tst" id="ts" role="status" aria-live="polite"></div>
+<footer><div class="w"><div class="fg"><div><div class="logo">Nagar<b>Sewa</b></div><p style="color:#A9A598;margin-top:12px;max-width:300px;font-size:14.5px">Report civic hazards. Track repairs. Verify the result.</p></div>
+<div><h4>Product</h4><a href="#report">Report a hazard</a><a href="#map">Incident map</a><a href="#track">Track a report</a></div>
+<div><h4>Guidance</h4><a href="#home-how">How reporting works</a><a href="#report">Photo tips</a></div>
+<div><h4>Company</h4><a href="#privacy" data-t="Privacy page is not part of this demo.">Privacy</a><a href="#terms" data-t="Terms page is not part of this demo.">Terms</a><a href="#contact" data-t="Contact form is not connected in this demo.">Contact</a></div></div>
+<p style="color:#A9A598;font-size:13px;margin-top:48px">Demonstration build for Indiathon, E-Cell IIT Bhubaneswar. All incidents and figures shown are sample data. Not connected to any municipality.</p></div></footer>
+<script>
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const IC={pot:'<circle cx="12" cy="12" r="9" stroke-dasharray="3 3"/><ellipse cx="12" cy="12" rx="4" ry="2.5"/>',drain:'<rect x="3" y="5" width="18" height="14"/><path d="M8 5v14M12 5v14M16 5v14"/>',lamp:'<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/>',bin:'<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"/>',water:'<path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.500 6-11 6-11z"/>',alert:'<path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18h.01"/>',pin:'<path d="M12 21s7-6.500 7-12a7 7 0 0 0-14 0c0 5.500 7 12 7 12z"/><circle cx="12" cy="9" r="2.500"/>',cam:'<path d="M4 8h3l2-3h6l2 3h3v12H4z"/><circle cx="12" cy="13" r="3.500"/>',arr:'<path d="M5 12h14M13 6l6 6-6 6"/>',up:'<path d="M12 16V4M6 10l6-6 6 6M4 20h16"/>'};
+const ic=n=>`<svg class="i" viewBox="0 0 24 24">${IC[n]}</svg>`;
+const CATS=[['pot','Potholes and damaged roads','Cracks, craters, collapsed edges.'],['drain','Open drains and manholes','Missing covers, blocked channels.'],['lamp','Broken streetlights','Dark stretches, damaged poles.'],['bin','Garbage accumulation','Overflowing bins, dumping spots.'],['water','Waterlogging','Standing water after rain.'],['alert','Other public hazards','Anything unsafe in public space.']];
+const D=[['NS-1042','Pothole','Anna Nagar, Chennai','High','Review','Submitted','12 Oct','—',62,38],['NS-1041','Open drain','Besant Nagar, Chennai','High','Assigned','Assigned','11 Oct','Drainage Team B',30,64],['NS-1038','Streetlight','T. Nagar, Chennai','Medium','Assigned','Assigned','10 Oct','Electrical Unit 2',48,24],['NS-1036','Garbage','Velachery, Chennai','Low','Review','Submitted','09 Oct','—',72,70],['NS-1030','Waterlogging','Adyar, Chennai','Medium','Verification','Verification Pending','07 Oct','Roads Crew A',40,78],['NS-1027','Pothole','Mylapore, Chennai','High','Verified','Verified','04 Oct','Roads Crew A',22,48],['NS-1019','Pothole','Guindy, Chennai','Low','Reopened','Reopened','01 Oct','Roads Crew C',58,56],['NS-1012','Streetlight','Porur, Chennai','Medium','Verified','Verified','29 Sep','Electrical Unit 1',16,30]];
+const MQ=`<div class="mq" aria-hidden="true"><div>${[0,1].map(()=>CATS.map(c=>`<span>${c[1]}</span><b style="color:var(--red)">■</b>`).join('')).join('')}</div></div>`;
+const ROLES=[['Citizens','Report in under a minute','Add a photo, drop a pin and write a short note. Then follow every status change and see the repair proof.','#report','Start a report'],['Reviewers','Decide with context','See the AI suggestion, the reason behind each priority and any possible duplicates before you approve.','#admin','Open the review queue'],['Administrators','Assign, then verify','Assign a responsible team, record instructions, and verify repairs as a separate step from completion.','#admin','Open the dashboard']];
+const road=`<svg class="sc" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-label="Illustration of a damaged road with a pothole. Replace with a real photograph."><rect width="400" height="500" fill="#2b2926"/><rect width="400" height="170" fill="#4a463e"/><path d="M0 170L120 40h160l120 130z" fill="#38352f"/><path d="M0 170h400v330H0z" fill="#3a3732"/><path d="M200 175l-150 330M200 175l150 330" stroke="#1A1917" stroke-width="3"/><path d="M200 180v320" stroke="#C9C2A8" stroke-width="5" stroke-dasharray="26 22"/><ellipse cx="190" cy="330" rx="62" ry="26" fill="#14130f"/><ellipse cx="190" cy="326" rx="48" ry="18" fill="#222019"/><path d="M130 335l-30 8M250 322l34-12M180 360l-6 22" stroke="#14130f" stroke-width="3"/><rect y="0" width="400" height="60" fill="#5a5448" opacity=".5"/></svg>`;
+const LL=[[13.0850,80.2101],[13.0002,80.2668],[13.0418,80.2341],[12.9815,80.2180],[13.0012,80.2565],[13.0368,80.2676],[13.0067,80.2206],[13.0382,80.1565]];
+function tileMap(id,c,z){const m=L.map(id,{scrollWheelZoom:false}).setView(c,z);L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(m);return m}
+const PCOL={High:'#E0241A',Medium:'#C88718',Low:'#27734A'};
+function mapSVG(sel,click=true){const c=P=>({High:'#E0241A',Medium:'#C88718',Low:'#27734A'}[P]);
+return `<div class="map"><svg viewBox="0 0 100 100" role="img" aria-label="Demonstration map of Chennai with sample incidents"><path d="M0 12C25 8 40 20 60 14S90 8 100 12v7C85 22 70 22 55 22S20 16 0 20z" fill="#D8D1C1"/><g stroke="#fff" stroke-width="1.8" fill="none" opacity=".9"><path d="M0 40h100M0 70h100M30 0v100M68 0v100"/><path d="M0 90L100 30" stroke-width="2.4"/></g><g stroke="#D8D1C1" stroke-width=".6"><path d="M0 55h100M0 25h100M50 0v100M12 0v100M85 0v100"/></g>
+${click?D.map((d,i)=>`<g class="mk${d[3]=='High'?' hi':''}" data-i="${i}" tabindex="0" role="button" aria-label="${d[0]} ${d[1]}, ${d[3]} priority"><circle cx="${d[8]}" cy="${d[9]}" r="2.6" fill="${c(d[3])}" stroke="#F5F0DC" stroke-width=".8"/>${d[3]=='High'?'<path d="M'+(d[8]-1)+' '+d[9]+'h2M'+d[8]+' '+(d[9]-1)+'v2" stroke="#fff" stroke-width=".5"/>':''}</g>`).join(''):''}
+${sel?`<g id="pick" style="cursor:grab"><circle cx="${sel[0]}" cy="${sel[1]}" r="3.4" fill="#F0271F" stroke="#F5F0DC" stroke-width="1"/><circle cx="${sel[0]}" cy="${sel[1]}" r="1.2" fill="#fff"/></g>`:''}</svg><div style="position:absolute;left:10px;bottom:8px;background:var(--iv);font-size:11.5px;padding:2px 8px;border:1px solid var(--bd)">Demo map · sample data</div></div>`}
+function toast(m){const t=$('#ts');t.textContent=m;t.classList.add('on');clearTimeout(t._);t._=setTimeout(()=>t.classList.remove('on'),2600)}
+const bad=(p,s)=>`<span class="badge b-${p}">${p}</span>`,st=(s,k)=>`<span class="badge s-${k}">${s}</span>`;
+const TL=(n)=>['Report submitted','Under review','Repair assigned','Repair completed','Verification pending or verified'].map((t,i)=>`<li style="transition-delay:${i*.16}s" class="${i<n?'done':i==n?'now':''}"><span class="d"></span><div><b>${t}</b><div class="mute" style="font-size:14px">${['Photo, location and description received.','A reviewer checks the report and priority.','A responsible team is recorded.','The team uploads repair evidence.','A reviewer confirms the fix. An after-photo alone is never enough.'][i]}</div></div></li>`).join('');
+const V={};
+V.home=()=>`<div class="pg"><section class="hero"><div class="w hg"><div><h1><span class="ln"><i>Safer Streets.</i></span><span class="ln r"><i style="animation-delay:.18s">Stronger Communities.</i></span></h1><p class="lead">Spot a civic problem? Report it with a photo and location. Help make your neighbourhood safer, cleaner, and more accountable.</p><div class="row"><a href="#report" class="btn p">Report a Hazard ${ic('arr')}</a><a href="#map" class="btn">Explore Incident Map</a></div></div>
+<div><div class="shot">${road}<img src="images/hero.jpg" alt="A damaged road with a pothole in an Indian city" onerror="this.remove()"><span class="pin"></span><dl class="tag"><dt>Hazard</dt><dd>Pothole</dd><dt>Priority</dt><dd>High</dd><dt>Location</dt><dd>Anna Nagar, Chennai</dd></dl></div><p class="demo">Illustrative example, not a live incident. Swap in a documentary photograph before launch.</p></div></div></section>
+${MQ}<div class="strip"><div class="w">${[['Reports Submitted','1,284'],['Issues Resolved','902'],['Areas Covered','37'],['Repairs Verified','611']].map(m=>`<div class="m rv"><b data-n="${m[1].replace(',','')}">${m[1]}</b><span class="mute">${m[0]}</span></div>`).join('')}<p class="demo" style="grid-column:1/-1;padding:0 0 12px">Demonstration values. Not operational results.</p></div></div>
+<section class="s dark" id="how"><div class="w"><h2 class="rv" style="max-width:640px">Four steps from problem to proof.</h2><div class="steps">${[['Capture','Take a photo of the civic problem.'],['Locate','Confirm the location on the map.'],['Review','AI assists with classification and prioritization.'],['Resolve','Track the repair and verify the result.']].map((s,i)=>`<div class="step rv" style="transition-delay:${i*90}ms"><span class="n">0${i+1}</span><h3>${s[0]}</h3><p class="mute">${s[1]}</p></div>`).join('')}</div></div></section>
+<section class="s"><div class="w"><h2 class="rv" style="max-width:600px">What you can report.</h2><div class="cats">${CATS.map(c=>`<a href="#report" class="cat rv">${ic(c[0])}<div><h3>${c[1]}</h3><p class="mute" style="font-size:14.5px">${c[2]}</p></div></a>`).join('')}</div></div></section>
+<section class="s" style="background:var(--surf);border-block:1px solid var(--bd)"><div class="w"><h2 class="rv" style="max-width:640px">One platform, three roles.</h2><div class="tabs" role="tablist">${ROLES.map(r=>`<button role="tab">${r[0]}</button>`).join('')}<span class="ink"></span></div><div id="tp" class="tpn" role="tabpanel" style="min-height:150px"></div></div></section>
+<section class="s dark"><div class="w two"><div class="rv"><h2>Reporting is only the beginning.</h2><p class="mute" style="margin-top:20px;max-width:440px">Track the progress of a reported issue, review its status, and see whether the repair has been verified.</p><a href="#track" class="btn p" style="margin-top:32px">See a sample report</a></div><ol class="tl rv">${TL(3)}</ol></div></section>
+<section class="cta"><div class="w"><h2 class="rv">Make your neighbourhood better, one report at a time.</h2><div class="row"><a href="#report" class="btn p">Report a Hazard</a><a href="#map" class="btn">Explore the Map</a></div></div></section></div>`;
+let R={step:0,img:null,pos:[13.0827,80.2707],cat:'Pothole',desc:'',ai:false};
+const STEPS=['Photo','Location','AI check','Details','Review'];
+V.report=()=>{if(R.done)return V.done();const s=R.step;let b='';
+if(s==0)b=`<h2 style="font-size:32px">Add a photo of the problem</h2><p class="mute" style="margin:8px 0 20px">Show the hazard clearly, in daylight if possible. JPG or PNG, up to 8 MB.</p>${R.img?`<div class="prev"><img src="${R.img}" alt="Your uploaded hazard photo"></div><div class="row" style="margin-top:12px"><button class="btn sm" id="rep">Replace</button><button class="btn sm" id="rm">Remove</button></div>`:`<label class="drop" id="dz" for="fi" style="display:block">${ic('up')}<div style="font-weight:600;margin-top:10px">Drop a photo here, or tap to take one</div><div class="mute" style="font-size:14px">Camera opens on mobile</div></label>`}<input type="file" id="fi" accept="image/*" capture="environment" hidden><div class="err" id="er" role="alert"></div>`;
+if(s==1)b=`<h2 style="font-size:32px">Confirm the location</h2><p class="mute" style="margin:8px 0 16px">Tap or drag the pin. Location access is optional.</p><div class="tools"><input id="q" placeholder="Search an area, for example Anna Nagar" aria-label="Search area"><button class="btn sm" id="gps">${ic('pin')} Use my location</button></div><div id="mp" style="height:380px;border:1px solid var(--bd)"></div><p class="mono mute" id="ll" style="margin-top:10px">${R.pos[0].toFixed(5)}, ${R.pos[1].toFixed(5)}</p><div class="err" id="er"></div>`;
+if(s==2)b=`<h2 style="font-size:32px">AI suggestion</h2><p class="mute" style="margin:8px 0 20px">This is a prediction, not a confirmed fact. Correct it if it is wrong.</p>${R.ai?`<div class="card"><p class="mute" style="font-size:14px">Predicted category</p><h3 style="font-size:26px;margin:2px 0 12px">${R.cat}</h3>${bad('High')} <p style="margin:14px 0 0;font-size:14.5px">Suggested because the damage looks deep and the location is on a main road. Demo output, no model is connected.</p></div>`:`<div class="card"><p>No analysis yet.</p></div><button class="btn p" id="an" style="margin-top:14px">Analyse photo</button>`}<label class="l" for="cs">Category</label><select id="cs">${CATS.map(c=>`<option ${c[1].startsWith(R.cat)?'selected':''}>${c[1]}</option>`).join('')}</select>`;
+if(s==3)b=`<h2 style="font-size:32px">Add details</h2><label class="l" for="ds">What did you see?</label><textarea id="ds" rows="4" maxlength="400" placeholder="Large pothole near the bus stop, about 30 cm deep.">${R.desc}</textarea><div class="err" id="er" role="alert"></div><p class="mute" style="font-size:14px">Please don’t include names or phone numbers.</p>`;
+if(s==4)b=`<h2 style="font-size:32px">Review and submit</h2><div class="card" style="margin-top:18px;display:grid;gap:10px"><div><span class="mute">Category</span><br><b>${R.cat}</b></div><div><span class="mute">Location</span><br><b class="mono">${R.pos[0].toFixed(4)}, ${R.pos[1].toFixed(4)}</b></div><div><span class="mute">Description</span><br>${R.desc||'—'}</div>${R.img?`<img src="${R.img}" alt="Your photo" style="max-height:160px;object-fit:cover">`:''}</div>`;
+return `<div class="w pg" style="max-width:720px;padding-top:48px;padding-bottom:64px"><p class="mute" style="font-size:14px">Demo mode: nothing is sent to a server.</p><div class="bar" aria-label="Step ${s+1} of 5">${STEPS.map((_,i)=>`<i class="${i<=s?'on':''}"></i>`).join('')}</div><span class="mono mute">Step ${s+1}/5 · ${STEPS[s]}</span><div style="margin-top:10px">${b}</div><div class="stk">${s?'<button class="btn" id="bk">Back</button>':''}<button class="btn p" id="nx">${s==4?'Submit report':'Continue'}</button></div></div>`};
+V.done=()=>`<div class="w pg" style="max-width:640px;padding:72px 24px"><div class="card" style="border-top:4px solid var(--ok)"><h2 style="font-size:36px">Report received</h2><p class="mute" style="margin:8px 0 20px">Sample confirmation. It has not been saved anywhere.</p><p class="mono">${R.id}</p><p style="margin-top:12px">${R.cat} · ${st('Submitted','Submitted')}</p><div class="row" style="margin-top:24px"><a href="#track" class="btn p">View Report</a><a href="#map" class="btn">Explore Nearby Issues</a></div></div></div>`;
+V.track=()=>`<div class="w pg" style="padding-top:48px;padding-bottom:80px"><p class="mono mute">NS-1030 · sample report</p><h1 style="font-size:clamp(36px,5vw,60px);margin:8px 0 18px">Waterlogging, Adyar</h1><div class="row" style="margin-bottom:36px">${bad('Medium')}${st('Verification Pending','Verification')}<span class="mute">Reported 07 Oct · Roads Crew A · Approximate public location</span></div>
+<div class="two" style="align-items:start"><div><h3>Before and after</h3><div class="ba" style="margin-top:14px"><figure><figcaption>Before</figcaption><div class="ph"><img src="images/before.jpg" alt="Citizen photo" onerror="this.remove()">Citizen photo</div></figure><figure><figcaption>After</figcaption><div class="ph g"><img src="images/after.jpg" alt="Repair evidence" onerror="this.remove()">Repair evidence</div></figure></div><p class="mute" style="margin-top:14px;font-size:14.5px">Repair evidence has been uploaded. A reviewer must still verify it. This report is not marked verified yet.</p><h3 style="margin-top:28px">Citizen description</h3><p class="mute">Water stays on the road for hours after light rain near the junction.</p></div><ol class="tl rv">${TL(4)}</ol></div></div>`;
+let F={q:'',c:'',p:'',s:'',k:0,d:1},A='Overview',AN=0;const AV={},TEAMS=['Roads Crew A','Roads Crew C','Drainage Team B','Electrical Unit 1','Electrical Unit 2'],HIST=[['NS-1041','Drainage Team B','High','11 Oct']],PC={High:'var(--red)',Medium:'var(--warn)',Low:'var(--ok)'};
+const H=(t,s)=>`<h2 style="font-size:32px">${t}</h2><p class="demo" style="margin-bottom:24px">${s||'Sample data for design preview.'}</p>`;
+const cn=k=>{const m={};D.forEach(d=>m[d[k]]=(m[d[k]]||0)+1);return Object.entries(m)};
+const HB=(rows,c)=>{const mx=Math.max(...rows.map(r=>r[1]));return rows.map(([n,v])=>`<div style="display:grid;grid-template-columns:120px 1fr 24px;gap:12px;align-items:center;margin:12px 0;font-size:14px"><span>${n}</span><span style="background:var(--warm);height:14px"><i style="display:block;height:100%;width:${v/mx*100}%;background:${c(n)};animation:gw 1s var(--ease)"></i></span><b>${v}</b></div>`).join('')};
+AV['Incident Map']=()=>`${H('Incident map','Demo map with sample incidents. Select a marker.')}<div id="amap" style="height:460px;border:1px solid var(--bd)"></div><p class="mute" style="margin:14px 0">${bad('High')} ${bad('Medium')} ${bad('Low')}</p><a href="#map" class="btn sm">Open full map</a>`;
+AV['All Reports']=()=>`${H('All reports')}<div class="tw"><table><thead><tr><th>ID</th><th>Hazard</th><th>Location</th><th>Priority</th><th>Status</th><th>Team</th></tr></thead><tbody>${D.map((d,i)=>`<tr class="r" style="animation:pg .5s ${i*.05}s var(--ease) both"><td class="mono">${d[0]}</td><td>${d[1]}</td><td>${d[2]}</td><td>${bad(d[3])}</td><td>${st(d[5],d[4])}</td><td>${d[7]}</td></tr>`).join('')}</tbody></table></div>`;
+AV['Review Queue']=()=>`${H('Review queue','Reports waiting for a decision.')}<div id="rq">${D.filter(d=>d[4]=='Review').map(d=>`<div class="card" style="margin-bottom:16px;transition:opacity .35s,transform .35s var(--ease)"><div class="two" style="gap:20px;align-items:start"><div class="ph"><img src="images/before.jpg" alt="Photo" onerror="this.remove()">Photo</div><div><h3>${d[0]} · ${d[1]}, ${d[2]}</h3><p style="font-size:14.5px;margin:8px 0">AI suggests ${bad(d[3])} because the damage looks significant.<br>Possible duplicate: none within 50 m.</p><input placeholder="Review note (optional)" aria-label="Review note"><div class="row" style="margin-top:12px"><button class="btn p sm" data-act="ok" data-id="${d[0]}">Approve</button><button class="btn sm" data-act="no" data-id="${d[0]}">Reject</button></div></div></div></div>`).join('')}</div>`;
+AV.Assignments=()=>`${H('Assignments')}<div class="two" style="align-items:start;gap:24px"><div class="card"><label class="l" for="ai" style="margin-top:0">Incident</label><select id="ai">${D.map(d=>`<option>${d[0]} · ${d[1]}, ${d[2]}</option>`).join('')}</select><label class="l" for="at">Responsible team</label><select id="at">${TEAMS.map(t=>`<option>${t}</option>`).join('')}</select><label class="l" for="ap2">Priority</label><select id="ap2"><option>High</option><option>Medium</option><option>Low</option></select><label class="l" for="an2">Instructions</label><textarea id="an2" rows="3" placeholder="Fill and compact the pothole by Friday."></textarea><button class="btn p" id="asb" style="margin-top:18px">Record assignment</button></div><div><h3>Assignment history</h3><ul class="tl in" style="margin-top:18px">${HIST.map(h=>`<li class="done" style="transition-delay:0s"><span class="d"></span><div><b>${h[0]} → ${h[1]}</b><div class="mute" style="font-size:14px">${h[2]} priority · ${h[3]}</div></div></li>`).join('')}</ul></div></div>`;
+AV['Repair Verification']=()=>`${H('Repair verification')}<div class="card"><h3>NS-1030 · Waterlogging, Adyar</h3><div class="ba" style="margin:16px 0"><figure><figcaption>Original</figcaption><div class="ph"><img src="images/before.jpg" alt="Citizen photo" onerror="this.remove()">Citizen photo</div></figure><figure><figcaption>Repair evidence</figcaption><div class="ph g"><img src="images/after.jpg" alt="Team photo" onerror="this.remove()">Team photo</div></figure></div><p class="mute" style="font-size:14.5px">Completed by Roads Crew A on 09 Oct. Drain cleared and surface levelled.</p><label class="l" for="vn">Verification notes</label><input id="vn" placeholder="What did you check?"><div class="row" style="margin-top:14px"><button class="btn p sm" data-act="vf">Approve verification</button><button class="btn sm" data-act="vr">Reject</button><button class="btn sm" data-act="vo">Reopen incident</button></div><p id="vres" role="status" style="margin-top:14px;font-weight:600"></p></div>`;
+AV.Analytics=()=>`${H('Analytics','Calculated from the 8 sample incidents.')}<div class="two" style="align-items:start;gap:24px"><div class="card"><h3>By hazard</h3>${HB(cn(1),()=>'var(--ink)')}</div><div class="card"><h3>By priority</h3>${HB(cn(3),n=>PC[n])}<h3 style="margin-top:24px">By status</h3>${HB(cn(5),()=>'var(--red)')}</div></div>`;
+AV.Settings=()=>`${H('Settings')}<div class="card" style="max-width:560px">${[['Email me about new high-priority reports',1],['Daily summary',0],['Show possible duplicates in review',1]].map(s=>`<label style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid var(--bd);cursor:pointer">${s[0]}<input type="checkbox" class="tg" ${s[1]?'checked':''}></label>`).join('')}<button class="btn p" data-act="sv" style="margin-top:20px">Save settings</button></div>`;
+V.admin=()=>`<div class="adm${AN?'':' pg'}"><aside class="side" aria-label="Admin">${['Overview','Incident Map','All Reports','Review Queue','Assignments','Repair Verification','Analytics','Settings'].map(n=>`<button class="${n==A?'on':''}" data-n="${n}">${n}</button>`).join('')}</aside>
+<div class="main${AN?' pg':''}" id="am">${A!='Overview'?AV[A]():''}<div ${A!='Overview'?'hidden':''}><div class="row" style="justify-content:space-between;align-items:center"><h2 style="font-size:32px">Overview</h2><button class="btn p sm" data-t="Create incident is a demo action.">New Report</button></div><p class="demo">Sample data for design preview.</p>
+<div class="kp rv">${[['Open incidents',6],['Awaiting review',2],['High priority',3],['Awaiting verification',1]].map(k=>`<div><b data-n="${k[1]}">${k[1]}</b><span class="mute">${k[0]}</span></div>`).join('')}</div>
+<div class="tools"><input id="fq" type="search" placeholder="Search incidents" aria-label="Search"><select id="fc" aria-label="Category"><option value="">All hazards</option>${[...new Set(D.map(d=>d[1]))].map(x=>`<option>${x}</option>`).join('')}</select><select id="fp" aria-label="Priority"><option value="">All priorities</option><option>High</option><option>Medium</option><option>Low</option></select><select id="fs" aria-label="Status"><option value="">All statuses</option>${[...new Set(D.map(d=>d[5]))].map(x=>`<option>${x}</option>`).join('')}</select></div>
+<div class="tw"><table><thead><tr>${['ID','Hazard','Location','Priority','Status','Reported','Team'].map((h,i)=>`<th data-k="${i}" tabindex="0">${h} ↕</th>`).join('')}<th>Action</th></tr></thead><tbody id="tb"></tbody></table></div>
+<div class="card" style="margin-top:28px"><h3>Review queue · NS-1042</h3><div class="two" style="gap:24px;margin-top:14px;align-items:start"><div class="ph"><img src="images/before.jpg" alt="Submitted photo" onerror="this.remove()">Submitted photo</div><div><p style="font-size:14.5px"><b>AI:</b> Pothole, suggested High.<br><b>Why:</b> deep damage on a main road.<br><b>Possible duplicate:</b> none within 50 m.</p><label class="l" for="rn">Review note</label><input id="rn" placeholder="Optional note"><div class="row" style="margin-top:14px"><button class="btn p sm" id="ap">Approve</button><button class="btn sm" id="rj">Reject</button></div></div></div></div></div></div></div>`;
+V.map=()=>`<div class="w pg" style="padding-top:40px;padding-bottom:64px"><h2 style="font-size:40px">Explore issues</h2><div class="tools" style="margin-top:16px"><input id="mq" placeholder="Search by area" aria-label="Search area"><select id="mp2" aria-label="Priority"><option value="">All priorities</option><option>High</option><option>Medium</option><option>Low</option></select></div>
+<div class="two" style="align-items:start;gap:24px;grid-template-columns:1.6fr 1fr"><div id="mapw"></div><div><div class="card" id="det"><p class="mute">Select a marker to preview an incident.</p></div><p style="margin-top:14px;font-size:13.5px" class="mute">Priority: ${bad('High')} ${bad('Medium')} ${bad('Low')}</p><div id="lst" style="margin-top:14px"></div></div></div></div>`;
+function drawRows(){let r=D.filter(d=>(!F.q||(d[0]+d[1]+d[2]).toLowerCase().includes(F.q))&&(!F.c||d[1]==F.c)&&(!F.p||d[3]==F.p)&&(!F.s||d[5]==F.s));r.sort((a,b)=>(a[F.k]>b[F.k]?1:-1)*F.d);
+$('#tb').innerHTML=r.length?r.map((d,i)=>`<tr class="r" style="animation:pg .5s ${i*.05}s var(--ease) both" data-id="${d[0]}"><td class="mono">${d[0]}</td><td>${d[1]}</td><td>${d[2]}</td><td>${bad(d[3])}</td><td>${st(d[5],d[4])}</td><td>${d[6]}</td><td>${d[7]}</td><td><a href="#track" class="btn sm">Open</a></td></tr>`).join(''):`<tr><td colspan="8" style="text-align:center;padding:40px">No incidents match. <button class="btn sm" id="clr">Clear filters</button></td></tr>`;const c=$('#clr');if(c)c.onclick=()=>{F={...F,q:'',c:'',p:'',s:''};route()}}
+function pick(i){const d=D[i];$$('.mk').forEach(m=>m.classList.toggle('sel',m.dataset.i==i));$('#det').innerHTML=`<div class="ph" style="margin-bottom:14px">Photo thumbnail</div><h3>${d[1]} · ${d[2]}</h3><p style="margin:8px 0">${bad(d[3])} ${st(d[5],d[4])}</p><p class="mute" style="font-size:14px">Reported ${d[6]} · <span class="mono">${d[0]}</span></p><a href="#track" class="btn p sm" style="margin-top:12px">View details</a>`}
+function wire(r){
+if(r=='report'){const n=$('#nx'),b=$('#bk');
+if($('#fi'))$('#fi').onchange=e=>{const f=e.target.files[0];if(!f)return;if(!f.type.startsWith('image/')){$('#er').textContent='That file is not an image. Choose a JPG or PNG.';return}if(f.size>8e6){$('#er').textContent='Photo is over 8 MB. Choose a smaller one.';return}const fr=new FileReader();fr.onload=()=>{R.img=fr.result;route()};fr.readAsDataURL(f)};
+const dz=$('#dz');if(dz){['dragover','dragenter'].forEach(v=>dz.addEventListener(v,e=>{e.preventDefault();dz.classList.add('ov')}));dz.addEventListener('dragleave',()=>dz.classList.remove('ov'));dz.addEventListener('drop',e=>{e.preventDefault();$('#fi').files=e.dataTransfer.files;$('#fi').onchange({target:$('#fi')})})}
+if($('#rm'))$('#rm').onclick=()=>{R.img=null;R.ai=false;route()};if($('#rep'))$('#rep').onclick=()=>$('#fi').click();
+if($('#mp')){const m=tileMap('mp',R.pos,15),mk=L.marker(R.pos,{draggable:true}).addTo(m);const set=p=>{R.pos=[p.lat,p.lng];$('#ll').textContent=p.lat.toFixed(5)+', '+p.lng.toFixed(5)};mk.on('dragend',()=>set(mk.getLatLng()));m.on('click',e=>{mk.setLatLng(e.latlng);set(e.latlng)});
+$('#gps').onclick=()=>{if(!navigator.geolocation){$('#er').textContent='Location is unavailable. Tap the map to place the pin.';return}navigator.geolocation.getCurrentPosition(p=>{const ll=L.latLng(p.coords.latitude,p.coords.longitude);m.setView(ll,17);mk.setLatLng(ll);set(ll)},()=>{$('#er').textContent='Location permission denied. Tap the map to place the pin instead.'})};
+$('#q').onkeydown=e=>{if(e.key!='Enter')return;fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q='+encodeURIComponent($('#q').value)).then(r=>r.json()).then(j=>{if(!j[0]){$('#er').textContent='Area not found. Try a nearby landmark.';return}const ll=L.latLng(+j[0].lat,+j[0].lon);m.setView(ll,16);mk.setLatLng(ll);set(ll);$('#er').textContent=''}).catch(()=>{$('#er').textContent='Search is unavailable. Tap the map instead.'})}}
+if($('#an'))$('#an').onclick=e=>{e.target.disabled=true;e.target.innerHTML='<span class="sp"></span> Analysing';setTimeout(()=>{R.ai=true;route()},1100)};
+if($('#cs'))$('#cs').onchange=e=>{R.cat=e.target.value.split(' ')[0].replace(/s$/,'');R.cat=e.target.value.startsWith('Pot')?'Pothole':e.target.value};
+if(b)b.onclick=()=>{R.step--;route()};
+n.onclick=()=>{if(R.step==3){R.desc=$('#ds').value.trim();if(R.desc.length<10){$('#er').textContent='Add at least 10 characters so reviewers understand the problem.';$('#ds').focus();return}}
+if(R.step==0&&!R.img){$('#er').textContent='Add a photo to continue.';return}
+if(R.step==4){n.disabled=true;n.innerHTML='<span class="sp"></span> Submitting';setTimeout(()=>{R.id='NS-'+(1043+Math.floor(Math.random()*90));R.done=1;route();toast('Report submitted (demo)')},1200);return}R.step++;route()}}
+if(r=='admin'){AN=0;drawRows();if($('#amap')){const m=tileMap('amap',[13.04,80.23],12);D.forEach((d,i)=>L.circleMarker(LL[i],{radius:9,color:'#F5F0DC',weight:2,fillColor:PCOL[d[3]],fillOpacity:1}).bindTooltip(d[0]+' · '+d[1]+', '+d[2]).addTo(m))}$$('#am .mk').forEach(m=>m.onclick=()=>toast(D[m.dataset.i][0]+' · '+D[m.dataset.i][1]+', '+D[m.dataset.i][2]));if($('#asb'))$('#asb').onclick=()=>{const b=$('#asb');b.disabled=true;b.innerHTML='<span class="sp"></span> Recording';setTimeout(()=>{HIST.unshift([$('#ai').value.split(' ')[0],$('#at').value,$('#ap2').value,'Today']);AN=1;route();toast('Assignment recorded')},600)};$('#am').onclick=e=>{const a=e.target.closest('[data-act]');if(!a)return;const k=a.dataset.act;if(k=='ok'||k=='no'){const c=a.closest('.card');c.style.opacity=0;c.style.transform='translateX(30px)';setTimeout(()=>{c.remove();if(!$('#rq .card'))$('#rq').innerHTML='<p class="mute">Queue is clear. New reports will appear here.</p>'},350);toast(a.dataset.id+(k=='ok'?' approved':' rejected'))}if(k=='vf'||k=='vr'||k=='vo'){const m={vf:'Verified. Incident closed.',vr:'Verification rejected. Sent back to the team.',vo:'Incident reopened.'};$('#vres').textContent=m[k];toast(m[k])}if(k=='sv')toast('Settings saved (demo)')};$('#fq').oninput=e=>{F.q=e.target.value.toLowerCase();drawRows()};[['fc','c'],['fp','p'],['fs','s']].forEach(([i,k])=>$('#'+i).onchange=e=>{F[k]=e.target.value;drawRows()});
+$$('th[data-k]').forEach(t=>t.onclick=()=>{F.d=F.k==+t.dataset.k?-F.d:1;F.k=+t.dataset.k;drawRows()});
+$$('.side button').forEach(b=>b.onclick=()=>{if(A==b.dataset.n)return;A=b.dataset.n;AN=1;route()});
+$('#ap').onclick=()=>toast('NS-1042 approved. Moved to Assignments.');$('#rj').onclick=()=>{if(confirm('Reject report NS-1042? The citizen will be notified.'))toast('NS-1042 rejected.')}}
+if(r=='map'){const m=tileMap('mapw',[13.04,80.23],12),g=L.layerGroup().addTo(m);const draw=()=>{const p=$('#mp2').value,q=$('#mq').value.toLowerCase();const s=D.filter(d=>(!p||d[3]==p)&&(!q||d[2].toLowerCase().includes(q)));g.clearLayers();s.forEach(d=>{const i=D.indexOf(d);L.circleMarker(LL[i],{radius:d[3]=='High'?11:9,color:'#F5F0DC',weight:2,fillColor:PCOL[d[3]],fillOpacity:1}).on('click',()=>{pick(i);m.panTo(LL[i])}).addTo(g)});if(s.length)m.fitBounds(L.latLngBounds(s.map(d=>LL[D.indexOf(d)])).pad(.3),{maxZoom:14});$('#lst').innerHTML=s.length?s.map(d=>`<button class="btn sm" style="width:100%;justify-content:space-between;margin-bottom:6px" data-i="${D.indexOf(d)}"><span>${d[0]} · ${d[1]}</span>${bad(d[3])}</button>`).join(''):'<p class="mute">No incidents in this view. Clear a filter.</p>';$$('#lst button').forEach(b=>b.onclick=()=>{pick(b.dataset.i);m.panTo(LL[b.dataset.i])})};draw();$('#mp2').onchange=draw;$('#mq').oninput=draw}
+$$('[data-t]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();toast(a.dataset.t)}));
+if(r=='home'){const tb=$$('.tabs button'),ink=$('.ink');const sel=i=>{tb.forEach((b,j)=>{b.classList.toggle('on',i==j);b.setAttribute('aria-selected',i==j)});ink.style.left=tb[i].offsetLeft+'px';ink.style.width=tb[i].offsetWidth+'px';const x=ROLES[i];$('#tp').innerHTML=`<div><h3 style="font-size:clamp(26px,3.4vw,40px);letter-spacing:-.02em">${x[1]}</h3><p class="mute" style="max-width:520px;margin:10px 0 22px">${x[2]}</p><a href="${x[3]}" class="btn sm">${x[4]}</a></div>`};tb.forEach((b,i)=>b.onclick=()=>sel(i));sel(0);if(document.fonts)document.fonts.ready.then(()=>sel(0));const sh=$('.shot');sh.onmousemove=e=>{const q=sh.getBoundingClientRect(),x=(e.clientX-q.left)/q.width-.5,y=(e.clientY-q.top)/q.height-.5,s=sh.querySelector('img')||sh.firstElementChild;s.style.animation='none';s.style.transform=`scale(1.14) translate(${-x*24}px,${-y*24}px)`}}
+if(matchMedia('(pointer:fine)').matches)$$('#app .btn.p').forEach(b=>{b.onpointermove=e=>{const q=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-q.left-q.width/2)*.14}px,${(e.clientY-q.top-q.height/2)*.22}px)`};b.onpointerleave=()=>b.style.transform=''});
+$$('.rv').forEach(e=>io.observe(e))}
+function cnt(b){if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;const t=+b.dataset.n,s=performance.now();(function f(n){const p=Math.min(1,(n-s)/1400);b.textContent=Math.round(t*(1-Math.pow(1-p,3))).toLocaleString('en-IN');if(p<1)requestAnimationFrame(f)})(s)}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');$$('[data-n]',e.target).forEach(cnt);io.unobserve(e.target)}}),{threshold:.15});
+function route(){const h=(location.hash||'#home').slice(1);const r=h.startsWith('home')?'home':V[h]?h:'home';$('#app').innerHTML=V[r]();$$('.links a').forEach(a=>a.classList.toggle('on',a.dataset.r==r));$('#lk').classList.remove('open');wire(r);if(h=='home-how'){setTimeout(()=>$('#how')&&$('#how').scrollIntoView({behavior:'smooth'}),50)}else if(r!='report'||R.step==0)window.scrollTo(0,0)}
+const pr=document.createElement('div');pr.id='prog';const cu=document.createElement('div');cu.className='curt';cu.innerHTML='Nagar<b>Sewa</b>';document.body.append(pr,cu);
+addEventListener('scroll',()=>{const h=document.documentElement;pr.style.transform='scaleX('+scrollY/Math.max(1,h.scrollHeight-innerHeight)+')'},{passive:true});
+addEventListener('hashchange',()=>{R.done=0;cu.classList.remove('go');void cu.offsetWidth;cu.classList.add('go');setTimeout(route,230)});$('#bg').onclick=()=>$('#lk').classList.toggle('open');route();
+</script>
+<!-- Include Leaflet.js CSS and JS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+let currentLat = null;
+let currentLng = null;
+
+// 1. Automatically fetch device GPS location on page load
+window.onload = function() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((pos) => {
+            currentLat = pos.coords.latitude;
+            currentLng = pos.coords.longitude;
+            console.log("GPS Location set:", currentLat, currentLng);
+        });
+    }
+    initMap();
+};
+
+// 2. Submit photo & location to Python backend
+async function submitReport() {
+    const fileInput = document.getElementById('imageInput'); // Ensure your file input has id="imageInput"
+    if (!fileInput.files[0]) {
+        alert("Please capture or select an image first!");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('image', fileInput.files[0]);
+    formData.append('latitude', currentLat || 0);
+    formData.append('longitude', currentLng || 0);
+
+    alert("Processing image with AI...");
+
+    try {
+        const response = await fetch('/analyze-hazard', {
+            method: 'POST',
+            body: formData
+        });
+
+        const result = await response.json();
+        if (result.status === "success") {
+            alert(`Report Created! Category: ${result.ai_result.category}, Severity: ${result.ai_result.severity}/5`);
+            loadMapMarkers(); // Refresh map pins
+        } else {
+            alert("Error: " + result.error);
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Server connection failed.");
+    }
+}
+
+// 3. Initialize Leaflet Map
+let map;
+function initMap() {
+    map = L.map('map').setView([20.5937, 78.9629], 5); // India center coordinates
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+    loadMapMarkers();
+}
+
+// 4. Fetch all saved markers from Python backend and draw them on map
+async function loadMapMarkers() {
+    try {
+        const res = await fetch('/get-reports');
+        const reports = await res.json();
+
+        reports.forEach(report => {
+            if (report.latitude && report.longitude) {
+                const marker = L.marker([report.latitude, report.longitude]).addTo(map);
+                marker.bindPopup(`
+                    <b>${report.category}</b><br>
+                    Severity: ${report.severity}/5<br>
+                    <img src="${report.image_url}" width="120" style="margin-top:5px; border-radius:6px;">
+                `);
+            }
+        });
+    } catch (e) {
+        console.error("Failed to load map markers:", e);
+    }
+}
+</script>
+</body></html>

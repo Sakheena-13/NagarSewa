@@ -15,14 +15,11 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # -------------------------------------------------------------
 # 1. CONFIGURATION (Replace with your actual keys)
 # -------------------------------------------------------------
-GEMINI_API_KEY = "AQ.Ab8RN6KMt58v9SRf9qtUg6TICh0qZzYN8pv7fHkPEV61QxOx0A"
-SUPABASE_URL = "https://zurqnyapycanhccfaxpr.supabase.co/rest/v1/"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1cnFueWFweWNhbmhjY2ZheHByIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM2Mjc5NzksImV4cCI6MjEwOTIwMzk3OX0.1hrz6BIXod8RpICO3mOK4Bj280q20rqqzBiVu5om7Tc"
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+SUPABASE_URL = os.environ.get("SUPABASE_URL")
+SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
 
-# Initialize Gemini AI Client
 ai_client = genai.Client(api_key=GEMINI_API_KEY)
-
-# Initialize Supabase Client
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 
